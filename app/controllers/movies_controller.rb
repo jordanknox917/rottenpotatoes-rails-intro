@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    #what do you mean this isnt efficient code? lol
     if params[:ratings] == nil
       ratings = ['G','PG','PG-13','R']
     else
