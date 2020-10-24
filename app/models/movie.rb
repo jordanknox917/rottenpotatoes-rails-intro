@@ -1,6 +1,4 @@
 class Movie < ActiveRecord::Base
-  # JORDANS ATTEMPT CODE
-  
   def self.all_ratings
     return ['G','PG','PG-13','R']
   end
@@ -14,6 +12,4 @@ class Movie < ActiveRecord::Base
       return Movie.where('rating IN (?)', ratings_list)
     end
   end
-  
-  # END JORDANS CODE
 end
