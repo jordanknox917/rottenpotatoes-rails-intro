@@ -8,10 +8,10 @@ class Movie < ActiveRecord::Base
   def self.with_ratings(ratings_list)
     if ratings_list.length() < 1
       #return all movies that fit
-      return where(true)
+      return Movie.all
     else
       #return movies with rating in ratings_list
-      return where(true)
+      return Movie.all
     end
   end
   
