@@ -11,6 +11,7 @@ class Movie < ActiveRecord::Base
       return Movie.all
     else
       #return movies with rating in ratings_list
+      puts Movie.all
       return Movie.all
     end
   end
