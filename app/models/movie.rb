@@ -7,12 +7,11 @@ class Movie < ActiveRecord::Base
   
   def self.with_ratings(ratings_list)
     if ratings_list.length() < 1
-      #return all movies that fit
-      return Movie.all
+      #return all movies
+      return Movie..where('rating IN (?)', ['G','PG','PG-13','R'])
     else
       #return movies with rating in ratings_list
-      puts Movie.all
-      return Movie.all
+      return Movie.where('rating IN (?)', ratings_list)
     end
   end
   
