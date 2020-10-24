@@ -19,14 +19,14 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @all_ratings = Movie.all_ratings
+    #define @all_ratings
     @movie = Movie.create!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movies_path
   end
 
   def edit
-    @all_ratings = Movie.all_ratings
+    #define @all_ratings
     @movie = Movie.find params[:id]
   end
 
