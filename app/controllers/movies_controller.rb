@@ -1,15 +1,13 @@
 class MoviesController < ApplicationController
   
-  #define @all_ratings
   def show
-    #define @all_ratings
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
 
   def index
-    @all_ratings = Movie.all_ratings
+#     @all_ratings = Movie.all_ratings
     @movies = Movie.all
   end
 
@@ -19,19 +17,16 @@ class MoviesController < ApplicationController
   end
 
   def create
-    #define @all_ratings
     @movie = Movie.create!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movies_path
   end
 
   def edit
-    #define @all_ratings
     @movie = Movie.find params[:id]
   end
 
   def update
-    #define @all_ratings
     @movie = Movie.find params[:id]
     @movie.update_attributes!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully updated."
