@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    @ratings_to_show = params[:ratings] #ABORT BY SETTING TO @ALL_RATINGS
+    @ratings_to_show = params[:ratings].keys #ABORT BY SETTING TO @ALL_RATINGS
     @movies = Movie.all
   end
 
