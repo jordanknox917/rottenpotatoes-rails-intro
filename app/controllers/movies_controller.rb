@@ -20,8 +20,8 @@ class MoviesController < ApplicationController
     else
       ratings = params[:ratings].keys
     end
-    @ratings_to_show = ratings #ABORT BY SETTING TO @ALL_RATINGS
-    @movies = Movie.with_ratings(ratings) #Movie.all REPLACE WITH Movie.with_ratings(params[:ratings].keys)
+    @ratings_to_show = ratings
+    @movies = Movie.with_ratings(ratings) 
     puts @ratings_to_show
     if params[:sort] == 'title'
       @highlight_title = 'bg-warning hilite'
