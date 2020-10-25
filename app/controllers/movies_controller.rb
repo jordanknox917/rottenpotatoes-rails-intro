@@ -11,9 +11,11 @@ class MoviesController < ApplicationController
     #what do you mean this isnt very efficient? lol
     if session[:ratings] != nil and params[:ratings] == nil
       params[:ratings] = session[:ratings]
+      session.delete(:sort)
     end
     if session[:sort] != nil and params[:sort] == nil
       params[:sort] = session[:sort]
+      session.delete(:sort)
     end
     if params[:ratings] == nil
       ratings = ['G','PG','PG-13','R']
