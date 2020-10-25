@@ -9,10 +9,10 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     #what do you mean this isnt very efficient? lol
-    if session[:ratings] != nil
+    if session[:ratings] != nil and params[:ratings] == nil
       params[:ratings] = session[:ratings]
     end
-    if session[:sort] != nil
+    if session[:sort] != nil and params[:sort] == nil
       params[:sort] = session[:sort]
     end
     if params[:ratings] == nil
