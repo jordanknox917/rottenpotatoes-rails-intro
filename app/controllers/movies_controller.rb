@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     #what do you mean this isnt very efficient? lol
+    puts params[:ratings]
     if params[:ratings] == nil
       ratings = ['G','PG','PG-13','R']
     else
@@ -16,6 +17,7 @@ class MoviesController < ApplicationController
     end
     @ratings_to_show = ratings #ABORT BY SETTING TO @ALL_RATINGS
     @movies = Movie.with_ratings(ratings) #Movie.all REPLACE WITH Movie.with_ratings(params[:ratings].keys)
+    puts @ratings_to_show
     if params[:sort] == 'title'
       @highlight_title = 'bg-warning hilite'
       @movies = @movies.order(:title)
