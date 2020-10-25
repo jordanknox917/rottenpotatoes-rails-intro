@@ -9,7 +9,12 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     #what do you mean this isnt very efficient? lol
-    puts params[:ratings]
+    if session[:ratings] != nil
+      params[:ratings] = session[:ratings]
+    end
+    if session[:sort] != nil
+      params[:sort] = session[:sort]
+    end
     if params[:ratings] == nil
       ratings = ['G','PG','PG-13','R']
     else
@@ -25,6 +30,8 @@ class MoviesController < ApplicationController
       @highlight_date = 'bg-warning hilite'
       @movies = @movies.order(:release_date)
     end
+    session[:ratings] = params[:ratings]
+    session[:sort] = params[:sort]
   end
 
   def new
