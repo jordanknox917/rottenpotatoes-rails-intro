@@ -9,22 +9,25 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     #what do you mean this isnt very efficient? lol
-    if session[:ratings] != nil and params[:ratings] == nil
+    if params[:ratings] == nil and session[:ratings] == nil
+      params[:ratings] = {"G" => 1,"PG" => 1,"PG-13" => 1,"R" => 1}
+    elsif params[:ratings] == nil and session[:ratings] != nil
       params[:ratings] = session[:ratings]
-      session.delete(:sort)
     end
-    if session[:sort] != nil and params[:sort] == nil
+    if params[:sort] == nil and session[:sort] == nil
+      params[:sort] = nil
+    elsif params[:sort] == nil and session[:sort] != nil
       params[:sort] = session[:sort]
-      session.delete(:sort)
     end
-    if params[:ratings] == nil
-      ratings = ['G','PG','PG-13','R']
-    else
-      ratings = params[:ratings].keys
-    end
+    ratings = params[:ratings].keys
+#     if params[:ratings] == nil
+#       ratings = ['G','PG','PG-13','R']
+#       params[:ratings] = {"G" => 1,"PG" => 1,"PG-13" => 1,"R" => 1}
+#     else
+#       ratings = params[:ratings].keys
+#     end
     @ratings_to_show = ratings
     @movies = Movie.with_ratings(ratings) 
-    puts @ratings_to_show
     if params[:sort] == 'title'
       @highlight_title = 'bg-warning hilite'
       @movies = @movies.order(:title)
