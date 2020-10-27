@@ -20,12 +20,6 @@ class MoviesController < ApplicationController
       params[:sort] = session[:sort]
     end
     ratings = params[:ratings].keys
-#     if params[:ratings] == nil
-#       ratings = ['G','PG','PG-13','R']
-#       params[:ratings] = {"G" => 1,"PG" => 1,"PG-13" => 1,"R" => 1}
-#     else
-#       ratings = params[:ratings].keys
-#     end
     @ratings_to_show = ratings
     @movies = Movie.with_ratings(ratings) 
     if params[:sort] == 'title'
