@@ -29,8 +29,15 @@ class MoviesController < ApplicationController
       @highlight_date = 'bg-warning hilite'
       @movies = @movies.order(:release_date)
     end
-    session[:ratings] = params[:ratings]
-    session[:sort] = params[:sort]
+#     session[:ratings] = params[:ratings]
+#     session[:sort] = params[:sort]
+    #call redirect_to
+    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
+      session[:ratings] = params[:ratings]
+      session[:sort] = params[:sort]
+      redirect_to movies_path([session[:sort], session[:ratings]]) and return
+    end
+#     redirect_to movies_path([session[:sort], session[:ratings]]) and return
   end
 
   def new
